@@ -1,0 +1,1 @@
+/Users/liyongshun/code/training/unmanned-aircraft/build/CMakeFiles/unmanned-aircraft.dir
