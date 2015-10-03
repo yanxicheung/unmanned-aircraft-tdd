@@ -1,14 +1,15 @@
 #include "Instruction.h"
-#include "Position.h"
+#include "Coordinate.h"
+#include "Orientation.h"
 
 namespace
 {
     struct UpInstruction : Instruction
     {
     private:
-        virtual void exec(Position& position) const
+        virtual void exec(Coordinate& coor, Orientation&) const
         {
-            position.up();
+            coor = coor.up();
         } 
     };
 }
@@ -24,9 +25,9 @@ namespace
     struct DownInstruction : Instruction
     {
     private:
-        virtual void exec(Position& position) const
+        virtual void exec(Coordinate& coor, Orientation&) const
         {
-            position.down();
+            coor = coor.down();
         } 
     };
 }
@@ -42,9 +43,9 @@ namespace
     struct ForwardInstruction : Instruction
     {
     private:
-        virtual void exec(Position& position) const
+        virtual void exec(Coordinate& coor, Orientation& ori) const
         {
-            position.forward();
+            coor = coor.forward(ori);
         } 
     };
 }
@@ -60,9 +61,9 @@ namespace
     struct LeftInstruction : Instruction
     {
     private:
-        virtual void exec(Position& position) const
+        virtual void exec(Coordinate&, Orientation& ori) const
         {
-            position.turnLeft();
+            ori = ori.turnLeft();
         } 
     };
 }
@@ -78,9 +79,9 @@ namespace
     struct RightInstruction : Instruction
     {
     private:
-        virtual void exec(Position& position) const
+        virtual void exec(Coordinate&, Orientation& ori) const
         {
-            position.turnRight();
+            ori = ori.turnRight();
         } 
     };
 
@@ -97,9 +98,9 @@ namespace
     struct RoundInstruction : Instruction
     {
     private:
-        virtual void exec(Position& position) const
+        virtual void exec(Coordinate&, Orientation& ori) const
         {
-            position.turnRound();
+            ori = ori.turnRound();
         } 
     };
 

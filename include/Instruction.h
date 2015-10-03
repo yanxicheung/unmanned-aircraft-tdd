@@ -1,11 +1,12 @@
 #ifndef _INCL_INSTRUCTION_H_
 #define _INCL_INSTRUCTION_H_
 
-struct Position;
+struct Coordinate;
+struct Orientation;
 
 struct Instruction
 {
-    virtual void exec(Position&) const = 0; 
+    virtual void exec(Coordinate&, Orientation&) const = 0; 
     virtual ~Instruction() {}
 };
 

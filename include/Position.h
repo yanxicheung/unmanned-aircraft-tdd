@@ -1,29 +1,14 @@
 #ifndef _INCL_POSITION_H_
 #define _INCL_POSITION_H_
 
-enum orientation {N, E, S, W};
+#include "Coordinate.h"
+#include "Orientation.h"
 
-struct Position
+struct Position : Coordinate, Orientation
 {
-    Position(int x, int y, int z, orientation d);
-    
+    Position(int x, int y, int z, const Orientation& d);
+
     bool operator==(const Position& rhs) const;
-
-    void up();
-    void down();
-    void forward();
-    void turnLeft();
-    void turnRight();
-    void turnRound();
-
-private:
-    bool onTheGround() const;
-
-private:
-    int x;
-    int y;
-    int z;
-    orientation d;
 };
 
 #endif
