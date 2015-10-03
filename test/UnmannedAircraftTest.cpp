@@ -88,3 +88,47 @@ _TEST(aircraft_should_back_to_original_direction_when_receive_instruction_LEFT_4
     THEN_RECEIVE_INSTRUCTION(LEFT);
     THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,N));
 }
+
+_TEST(aircraft_should_turn_to_WEST_when_receive_instruction_RIGHT)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(RIGHT);
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,E));
+}
+
+_TEST(aircraft_should_turn_to_SOUTH_when_receive_instruction_RIGHT_2_times)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_RECEIVE_INSTRUCTION(RIGHT);
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,S));
+}
+
+_TEST(aircraft_should_turn_to_EAST_when_receive_instruction_RIGHT_3_times)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_RECEIVE_INSTRUCTION(RIGHT);
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,W));
+}
+
+_TEST(aircraft_should_back_to_original_direction_when_receive_instruction_RIGHT_4_times)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_RECEIVE_INSTRUCTION(RIGHT);
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,N));
+}
+
+_TEST(aircraft_should_turn_to_SOUTH_when_receive_instruction_ROUND)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(ROUND);
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,S));
+}
+
+_TEST(aircraft_should_back_to_original_direction_when_receive_instruction_ROUND_2_times)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(ROUND);
+    THEN_RECEIVE_INSTRUCTION(ROUND);
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,N));
+}
+

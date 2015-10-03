@@ -15,11 +15,15 @@ struct Instructions
     static Instruction& down();
     static Instruction& forward();
     static Instruction& left();
+    static Instruction& right();
+    static Instruction& round();
 };
 
 #define UP Instructions::up()
 #define DOWN Instructions::down()
 #define FORWARD Instructions::forward()
 #define LEFT Instructions::left()
+#define RIGHT Instructions::right()
+#define ROUND Instructions::round()
 
 #endif

@@ -13,6 +13,8 @@ struct Position
     void down();
     void forward();
     void turnLeft();
+    void turnRight();
+    void turnRound();
 
 private:
     bool onTheGround() const;

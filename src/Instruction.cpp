@@ -73,3 +73,40 @@ Instruction& Instructions::left()
     return left;
 }
 
+namespace
+{
+    struct RightInstruction : Instruction
+    {
+    private:
+        virtual void exec(Position& position) const
+        {
+            position.turnRight();
+        } 
+    };
+
+}
+
+Instruction& Instructions::right()
+{
+    static RightInstruction right;
+    return right;
+}
+
+namespace
+{
+    struct RoundInstruction : Instruction
+    {
+    private:
+        virtual void exec(Position& position) const
+        {
+            position.turnRound();
+        } 
+    };
+
+}
+
+Instruction& Instructions::round()
+{
+    static RoundInstruction round;
+    return round;
+}

@@ -22,7 +22,6 @@ bool Position::onTheGround() const
 void Position::down()
 {
     if(onTheGround()) return;
-
     --z;
 }
 
@@ -34,4 +33,14 @@ void Position::forward()
 void Position::turnLeft()
 {
     d = static_cast<orientation>((d+3)%4);
+}
+
+void Position::turnRight()
+{
+    d = static_cast<orientation>((d+1)%4);   
+}
+
+void Position::turnRound()
+{
+    d = static_cast<orientation>((d+2)%4);       
 }
