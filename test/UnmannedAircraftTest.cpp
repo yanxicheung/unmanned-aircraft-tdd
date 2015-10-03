@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "UnmannedAircraft.h"
+#include "Instruction.h"
 
 struct UnmannedAircraftTest : testing::Test
 {

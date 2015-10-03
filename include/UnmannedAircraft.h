@@ -3,7 +3,7 @@
 
 #include "Position.h"
 
-enum Instruction {UP, DOWN, FORWARD};
+struct Instruction;
 
 struct UnmannedAircraft
 {
