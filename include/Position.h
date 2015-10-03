@@ -14,6 +14,10 @@ struct Position
     void forward();
 
 private:
+    bool onTheGround() const;
+
+
+private:
     int x;
     int y;
     int z;

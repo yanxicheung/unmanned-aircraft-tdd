@@ -29,6 +29,13 @@ TEST_F(UnmannedAircraftTest, when_receive_instruction_DOWN_aircraft_should_down_
     ASSERT_TRUE(Position(0,0,0,N) == aircraft.getPosition());   
 }
 
+TEST_F(UnmannedAircraftTest, aircraft_should_not_move_when_receive_instruction_DOWN_on_the_ground)
+{
+    aircraft.on(DOWN);
+
+    ASSERT_TRUE(Position(0,0,0,N) == aircraft.getPosition());   
+}
+
 TEST_F(UnmannedAircraftTest, when_receive_instruction_FORWARD_aircraft_should_forward_a_step)
 {
     aircraft.on(FORWARD);

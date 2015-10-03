@@ -14,8 +14,15 @@ void Position::up()
     ++z;
 }
 
+bool Position::onTheGround() const
+{
+    return z == 0;
+}
+
 void Position::down()
 {
+    if(onTheGround()) return;
+    
     --z;
 }
 
