@@ -9,7 +9,7 @@ struct UnmannedAircraftTest : testing::Test
         aircraft.on(instruction);
     }
 
-    void THEN_RECEIVE_INSTRUCTION(const Instruction& instruction)
+    void THEN_I_RECEIVE_INSTRUCTION(const Instruction& instruction)
     {
         WHEN_I_RECEIVE_INSTRUCTION(instruction);
     }
@@ -42,7 +42,7 @@ _TEST(aircraft_should_up_a_step_when_receive_instruction_UP)
 _TEST(aircraft_should_down_a_step_when_receive_instruction_DOWN)
 {
     WHEN_I_RECEIVE_INSTRUCTION(UP);
-    THEN_RECEIVE_INSTRUCTION(DOWN);
+    THEN_I_RECEIVE_INSTRUCTION(DOWN);
     THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,N));
 }
 
@@ -68,24 +68,24 @@ _TEST(aircraft_should_turn_to_WEST_when_receive_instruction_LEFT)
 _TEST(aircraft_should_turn_to_SOUTH_when_receive_instruction_LEFT_2_times)
 {
     WHEN_I_RECEIVE_INSTRUCTION(LEFT);
-    THEN_RECEIVE_INSTRUCTION(LEFT);
+    THEN_I_RECEIVE_INSTRUCTION(LEFT);
     THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,S));
 }
 
 _TEST(aircraft_should_turn_to_EAST_when_receive_instruction_LEFT_3_times)
 {
     WHEN_I_RECEIVE_INSTRUCTION(LEFT);
-    THEN_RECEIVE_INSTRUCTION(LEFT);
-    THEN_RECEIVE_INSTRUCTION(LEFT);
+    THEN_I_RECEIVE_INSTRUCTION(LEFT);
+    THEN_I_RECEIVE_INSTRUCTION(LEFT);
     THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,E));
 }
 
 _TEST(aircraft_should_back_to_original_direction_when_receive_instruction_LEFT_4_times)
 {
     WHEN_I_RECEIVE_INSTRUCTION(LEFT);
-    THEN_RECEIVE_INSTRUCTION(LEFT);
-    THEN_RECEIVE_INSTRUCTION(LEFT);
-    THEN_RECEIVE_INSTRUCTION(LEFT);
+    THEN_I_RECEIVE_INSTRUCTION(LEFT);
+    THEN_I_RECEIVE_INSTRUCTION(LEFT);
+    THEN_I_RECEIVE_INSTRUCTION(LEFT);
     THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,N));
 }
 
@@ -98,24 +98,24 @@ _TEST(aircraft_should_turn_to_WEST_when_receive_instruction_RIGHT)
 _TEST(aircraft_should_turn_to_SOUTH_when_receive_instruction_RIGHT_2_times)
 {
     WHEN_I_RECEIVE_INSTRUCTION(RIGHT);
-    THEN_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_I_RECEIVE_INSTRUCTION(RIGHT);
     THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,S));
 }
 
 _TEST(aircraft_should_turn_to_EAST_when_receive_instruction_RIGHT_3_times)
 {
     WHEN_I_RECEIVE_INSTRUCTION(RIGHT);
-    THEN_RECEIVE_INSTRUCTION(RIGHT);
-    THEN_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_I_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_I_RECEIVE_INSTRUCTION(RIGHT);
     THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,W));
 }
 
 _TEST(aircraft_should_back_to_original_direction_when_receive_instruction_RIGHT_4_times)
 {
     WHEN_I_RECEIVE_INSTRUCTION(RIGHT);
-    THEN_RECEIVE_INSTRUCTION(RIGHT);
-    THEN_RECEIVE_INSTRUCTION(RIGHT);
-    THEN_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_I_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_I_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_I_RECEIVE_INSTRUCTION(RIGHT);
     THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,N));
 }
 
@@ -128,7 +128,27 @@ _TEST(aircraft_should_turn_to_SOUTH_when_receive_instruction_ROUND)
 _TEST(aircraft_should_back_to_original_direction_when_receive_instruction_ROUND_2_times)
 {
     WHEN_I_RECEIVE_INSTRUCTION(ROUND);
-    THEN_RECEIVE_INSTRUCTION(ROUND);
+    THEN_I_RECEIVE_INSTRUCTION(ROUND);
     THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,N));
 }
 
+_TEST(aircraft_should_forward_a_step_in_EAST_when_receive_instruction_RIGHT_AND_FORWARD)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(RIGHT);
+    THEN_I_RECEIVE_INSTRUCTION(FORWARD);
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(1,0,0,E));
+}
+
+_TEST(aircraft_should_forward_a_step_in_WEST_when_receive_instruction_LEFT_AND_FORWARD)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(LEFT);
+    THEN_I_RECEIVE_INSTRUCTION(FORWARD);
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(-1,0,0,W));
+}
+
+_TEST(aircraft_should_forward_a_step_in_SOUTH_when_receive_instruction_ROUND_AND_FORWARD)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(ROUND);
+    THEN_I_RECEIVE_INSTRUCTION(FORWARD);
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,-1,0,S));
+}

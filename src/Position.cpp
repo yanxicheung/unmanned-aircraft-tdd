@@ -27,12 +27,21 @@ void Position::down()
 
 void Position::forward()
 {
-    ++y;
+    switch(d)
+    {
+        case N: ++y; break;
+        case E: ++x; break;
+        case S: --y; break;
+        case W: --x; break;
+        default: break;
+    }
 }
 
 void Position::turnLeft()
 {
-    d = static_cast<orientation>((d+3)%4);
+    turnRight();
+    turnRight();
+    turnRight();
 }
 
 void Position::turnRight()
@@ -42,5 +51,6 @@ void Position::turnRight()
 
 void Position::turnRound()
 {
-    d = static_cast<orientation>((d+2)%4);       
+    turnRight();
+    turnRight();
 }
