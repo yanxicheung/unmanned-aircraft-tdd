@@ -12,10 +12,10 @@ struct Position
     void up();
     void down();
     void forward();
+    void turnLeft();
 
 private:
     bool onTheGround() const;
-
 
 private:
     int x;

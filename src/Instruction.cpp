@@ -55,3 +55,21 @@ Instruction& Instructions::forward()
     return forward;
 }
 
+namespace
+{
+    struct LeftInstruction : Instruction
+    {
+    private:
+        virtual void exec(Position& position) const
+        {
+            position.turnLeft();
+        } 
+    };
+}
+
+Instruction& Instructions::left()
+{
+    static LeftInstruction left;
+    return left;
+}
+

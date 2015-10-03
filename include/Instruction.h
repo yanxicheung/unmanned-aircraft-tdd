@@ -14,10 +14,12 @@ struct Instructions
     static Instruction& up();
     static Instruction& down();
     static Instruction& forward();
+    static Instruction& left();
 };
 
 #define UP Instructions::up()
 #define DOWN Instructions::down()
 #define FORWARD Instructions::forward()
+#define LEFT Instructions::left()
 
 #endif
