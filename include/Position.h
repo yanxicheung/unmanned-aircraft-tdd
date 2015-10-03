@@ -9,6 +9,10 @@ struct Position
     
     bool operator==(const Position& rhs) const;
 
+    void up();
+    void down();
+    void forward();
+
 private:
     int x;
     int y;

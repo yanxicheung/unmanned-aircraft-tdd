@@ -3,9 +3,13 @@
 
 #include "Position.h"
 
+enum Instruction {UP, DOWN, FORWARD};
+
 struct UnmannedAircraft
 {
     UnmannedAircraft();
+
+    void on(const Instruction&);
 
     const Position& getPosition() const;
 
