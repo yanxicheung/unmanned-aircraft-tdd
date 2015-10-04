@@ -171,3 +171,24 @@ _TEST(aircraft_should_down_n_step_when_receive_instruction_DOWN_N)
     THEN_I_RECEIVE_INSTRUCTION(DOWN_N(10));
     THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,N));
 }
+
+_TEST(aircraft_should_execute_instructions_repeative_when_receive_REPEAT_INSTRUCTION_N)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(REPEAT(FORWARD,5));
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,5,0,N));
+    
+    THEN_I_RECEIVE_INSTRUCTION(REPEAT(LEFT,1));
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,5,0,W));
+
+    THEN_I_RECEIVE_INSTRUCTION(REPEAT(FORWARD,5));
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(-5,5,0,W));
+
+    THEN_I_RECEIVE_INSTRUCTION(REPEAT(UP,5));
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(-5,5,5,W));
+}
+
+_TEST(aircraft_should_stay_on_original_position_when_receive_repeat_n_out_of_bound)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(REPEAT(UP,11));
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,N));
+}

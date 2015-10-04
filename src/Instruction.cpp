@@ -129,11 +129,18 @@ namespace
     private:
         virtual void exec(Coordinate& coor, Orientation& ori) const
         {
+            if(isOutOfBound()) return;
+
             for(int i = 0; i < num; ++i)
             {
                 ins->exec(coor, ori);
             }
-        } 
+        }
+
+        bool isOutOfBound() const
+        {
+            return num<0 || num>10;
+        }
 
     private:
         const Instruction* ins;
