@@ -6,8 +6,6 @@ struct Coordinate;
 struct Orientation
 {
     Orientation turnLeft() const;
-    Orientation turnRight() const;
-    Orientation turnRound() const;
     Coordinate moveOn(int x, int y, int z) const;
     bool operator==(const Orientation&) const;
 

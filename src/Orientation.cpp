@@ -17,16 +17,6 @@ Orientation Orientation::turnLeft() const
     return *orientations[(order+3)%4];
 }
 
-Orientation Orientation::turnRight() const
-{
-    return *orientations[(order+1)%4];
-}
-
-Orientation Orientation::turnRound() const
-{
-    return *orientations[(order+2)%4];   
-}
-
 bool Orientation::operator==(const Orientation& rhs) const
 {
     return order == rhs.order;

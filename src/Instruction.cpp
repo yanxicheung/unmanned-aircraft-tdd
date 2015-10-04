@@ -74,83 +74,22 @@ Instruction& Instructions::left()
     return left;
 }
 
-namespace
+RepeatableInstruction::RepeatableInstruction(const Instruction& ins, int n) 
+    : ins(ins), n(n)
 {
-    struct RightInstruction : Instruction
+}
+
+bool RepeatableInstruction::isOutOfBound() const
+{
+    return n<0 || n>10;
+}
+
+void RepeatableInstruction::exec(Coordinate& coor, Orientation& ori) const
+{
+    if(isOutOfBound()) return;
+
+    for(int i = 0; i < n; ++i)
     {
-    private:
-        virtual void exec(Coordinate&, Orientation& ori) const
-        {
-            ori = ori.turnRight();
-        } 
-    };
-
-}
-
-Instruction& Instructions::right()
-{
-    static RightInstruction right;
-    return right;
-}
-
-namespace
-{
-    struct RoundInstruction : Instruction
-    {
-    private:
-        virtual void exec(Coordinate&, Orientation& ori) const
-        {
-            ori = ori.turnRound();
-        } 
-    };
-
-}
-
-Instruction& Instructions::round()
-{
-    static RoundInstruction round;
-    return round;
-}
-
-namespace
-{
-    struct RepeatInstruction : Instruction
-    {
-        RepeatInstruction() : ins(0), num(0)
-        {
-        }
-
-        void update(const Instruction& _ins, int n)
-        {
-            ins = &_ins;
-            num = n;
-        }
-
-    private:
-        virtual void exec(Coordinate& coor, Orientation& ori) const
-        {
-            if(isOutOfBound()) return;
-
-            for(int i = 0; i < num; ++i)
-            {
-                ins->exec(coor, ori);
-            }
-        }
-
-        bool isOutOfBound() const
-        {
-            return num<0 || num>10;
-        }
-
-    private:
-        const Instruction* ins;
-        int num;        
-    };
-}
-
-Instruction& Instructions::repeat(const Instruction& ins, int n)
-{
-    static RepeatInstruction repeat;
-    repeat.update(ins,n);
-    return repeat;
+        ins.exec(coor, ori);
+    }
 }
