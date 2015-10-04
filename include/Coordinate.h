@@ -10,7 +10,6 @@ struct Coordinate
     Coordinate up() const;
     Coordinate down() const;
     Coordinate forward(const Orientation&) const;
-
     bool operator==(const Coordinate& rhs) const;
 
 private:

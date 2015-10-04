@@ -152,3 +152,22 @@ _TEST(aircraft_should_forward_a_step_in_SOUTH_when_receive_instruction_ROUND_AND
     THEN_I_RECEIVE_INSTRUCTION(FORWARD);
     THE_AIRCRAFT_SHOULD_BE_AT(Position(0,-1,0,S));
 }
+
+_TEST(aircraft_should_forward_n_step_when_receive_instruction_FORWARD_N)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(FORWARD_N(10));
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,10,0,N));
+}
+
+_TEST(aircraft_should_up_n_step_when_receive_instruction_UP_N)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(UP_N(10));
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,10,N));
+}
+
+_TEST(aircraft_should_down_n_step_when_receive_instruction_DOWN_N)
+{
+    WHEN_I_RECEIVE_INSTRUCTION(UP_N(10));
+    THEN_I_RECEIVE_INSTRUCTION(DOWN_N(10));
+    THE_AIRCRAFT_SHOULD_BE_AT(Position(0,0,0,N));
+}

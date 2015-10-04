@@ -10,9 +10,18 @@ Coordinate Coordinate::up() const
     return Coordinate(x,y,z+1);
 }
 
+namespace
+{
+    bool onGround(int z)
+    {
+        return z == 0;
+    }
+}
+
 Coordinate Coordinate::down() const
 {
-    if(z == 0) return Coordinate(x,y,z);
+    if(onGround(z)) return Coordinate(x,y,z);
+
     return Coordinate(x,y,z-1);
 }
  

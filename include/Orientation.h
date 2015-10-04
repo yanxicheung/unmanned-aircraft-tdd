@@ -8,15 +8,13 @@ struct Orientation
     Orientation turnLeft() const;
     Orientation turnRight() const;
     Orientation turnRound() const;
-
     Coordinate moveOn(int x, int y, int z) const;
+    bool operator==(const Orientation&) const;
 
     static const Orientation north;
     static const Orientation east;
     static const Orientation south;
     static const Orientation west;
-
-    bool operator==(const Orientation&) const;
 
 private:
         Orientation(int order, int xFactor, int yFactor);

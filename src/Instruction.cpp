@@ -111,3 +111,39 @@ Instruction& Instructions::round()
     static RoundInstruction round;
     return round;
 }
+
+namespace
+{
+    struct RepeatInstruction : Instruction
+    {
+        RepeatInstruction() : ins(0), num(0)
+        {
+        }
+
+        void update(const Instruction& _ins, int n)
+        {
+            ins = &_ins;
+            num = n;
+        }
+
+    private:
+        virtual void exec(Coordinate& coor, Orientation& ori) const
+        {
+            for(int i = 0; i < num; ++i)
+            {
+                ins->exec(coor, ori);
+            }
+        } 
+
+    private:
+        const Instruction* ins;
+        int num;        
+    };
+}
+
+Instruction& Instructions::repeat(const Instruction& ins, int n)
+{
+    static RepeatInstruction repeat;
+    repeat.update(ins,n);
+    return repeat;
+}
