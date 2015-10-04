@@ -12,5 +12,5 @@ const Position& UnmannedAircraft::getPosition() const
 
 void UnmannedAircraft::on(const Instruction& instruction)
 {
-    instruction.exec(position, position);
+    instruction.exec(position.ROLE(Coordinate), position.ROLE(Orientation));
 }

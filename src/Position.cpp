@@ -7,6 +7,6 @@ Position::Position(int x, int y, int z, const Orientation& d)
     
 bool Position::operator==(const Position& rhs) const
 {
-    return static_cast<const Coordinate&>(*this) == rhs &&
-           static_cast<const Orientation&>(*this) == rhs;
+    return ROLE(Coordinate) == rhs.ROLE(Coordinate) &&
+           ROLE(Orientation) == rhs.ROLE(Orientation);
 }

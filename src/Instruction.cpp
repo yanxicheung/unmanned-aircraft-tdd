@@ -1,10 +1,12 @@
 #include "Instruction.h"
 #include "Coordinate.h"
 #include "Orientation.h"
+#include "base/Singleton.h"
+#include "base/Keywords.h"
 
-namespace
+Instruction& Instructions::up()
 {
-    struct UpInstruction : Instruction
+    DEF_SINGLETON(UpInstruction) EXTENDS(Instruction)
     {
     private:
         virtual void exec(Coordinate& coor, Orientation&) const
@@ -12,17 +14,13 @@ namespace
             coor = coor.up();
         } 
     };
+
+    return UpInstruction::getInstance();
 }
 
-Instruction& Instructions::up()
+Instruction& Instructions::down()
 {
-    static UpInstruction up;
-    return up;
-}
-
-namespace
-{
-    struct DownInstruction : Instruction
+    DEF_SINGLETON(DownInstruction) EXTENDS(Instruction)
     {
     private:
         virtual void exec(Coordinate& coor, Orientation&) const
@@ -30,17 +28,13 @@ namespace
             coor = coor.down();
         } 
     };
+
+    return DownInstruction::getInstance();
 }
 
-Instruction& Instructions::down()
+Instruction& Instructions::forward()
 {
-    static DownInstruction down;
-    return down;
-}
-
-namespace
-{
-    struct ForwardInstruction : Instruction
+    DEF_SINGLETON(ForwardInstruction) EXTENDS(Instruction)
     {
     private:
         virtual void exec(Coordinate& coor, Orientation& ori) const
@@ -48,17 +42,13 @@ namespace
             coor = coor.forward(ori);
         } 
     };
+
+    return ForwardInstruction::getInstance();
 }
 
-Instruction& Instructions::forward()
+Instruction& Instructions::left()
 {
-    static ForwardInstruction forward;
-    return forward;
-}
-
-namespace
-{
-    struct LeftInstruction : Instruction
+    DEF_SINGLETON(LeftInstruction) EXTENDS(Instruction)
     {
     private:
         virtual void exec(Coordinate&, Orientation& ori) const
@@ -66,12 +56,8 @@ namespace
             ori = ori.turnLeft();
         } 
     };
-}
 
-Instruction& Instructions::left()
-{
-    static LeftInstruction left;
-    return left;
+    return LeftInstruction::getInstance();
 }
 
 RepeatableInstruction::RepeatableInstruction(const Instruction& ins, int n) 

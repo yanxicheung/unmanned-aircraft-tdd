@@ -8,9 +8,7 @@ struct Instruction;
 struct UnmannedAircraft
 {
     UnmannedAircraft();
-
     void on(const Instruction&);
-
     const Position& getPosition() const;
 
 private:
